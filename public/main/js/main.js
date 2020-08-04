@@ -12,6 +12,7 @@
 		$header = $('#header'),
 		$footer = $('#footer'),
 		$main = $('#main'),
+		Template = [];
 		$main_articles = $main.children('article');
 
 	// Breakpoints.
@@ -72,128 +73,166 @@
 		// Methods.
 			$main._show = function(id, initial) {
 
-				var $article = $main_articles.filter('#' + id);
+				console.log('searching for : '+ id);
+	
+				if( Template.includes(id) ){
+					
+					$article = $main_articles.filter('#' + id);
 
-				// No such article? Bail.
-					if ($article.length == 0)
-						return;
+					showdata($article);
 
-				// Handle lock.
-
-					// Already locked? Speed through "show" steps w/o delays.
-						if (locked || (typeof initial != 'undefined' && initial === true)) {
-
-							// Mark as switching.
-								$body.addClass('is-switching');
-
-							// Mark as visible.
-								$body.addClass('is-article-visible');
-
-							// Deactivate all articles (just in case one's already active).
-								$main_articles.removeClass('active');
-
-							// Hide header, footer.
-								$header.hide();
-								$footer.hide();
-
-							// Show main, article.
-								$main.show();
-								$article.show();
-
-							// Activate article.
-								$article.addClass('active');
-
-							// Unlock.
-								locked = false;
-
-							// Unmark as switching.
-								setTimeout(function() {
-									$body.removeClass('is-switching');
-								}, (initial ? 1000 : 0));
-
-							return;
-
+				}else{
+					let loadTemplate = $.get(`/getTemplate/${id}`);
+				
+					loadTemplate.done( function (data) {
+						loadArticle(data, id);
 						}
+					);
+				}
+					
+				
 
-					// Lock.
-						locked = true;
 
-				// Article already visible? Just swap articles.
-					if ($body.hasClass('is-article-visible')) {
 
-						// Deactivate current article.
-							var $currentArticle = $main_articles.filter('.active');
+				function loadArticle(data, id) {
+					
+					Template.push(id)
+					
+					$main.append(data);
+					$main_articles = $main.children('article');
 
-							$currentArticle.removeClass('active');
+					var $article = $main_articles.filter('#' + id);
 
-						// Show article.
-							setTimeout(function() {
+					showdata($article)
 
-								// Hide current article.
-									$currentArticle.hide();
+					
+					
 
-								// Show article.
-									$article.show();
+				
+				}
 
-								// Activate article.
-									setTimeout(function() {
-
-										$article.addClass('active');
-
-										// Window stuff.
-											$window
-												.scrollTop(0)
-												.triggerHandler('resize.flexbox-fix');
-
-										// Unlock.
-											setTimeout(function() {
-												locked = false;
-											}, delay);
-
-									}, 25);
-
-							}, delay);
-
-					}
-
-				// Otherwise, handle as normal.
-					else {
-
-						// Mark as visible.
-							$body
-								.addClass('is-article-visible');
-
-						// Show article.
-							setTimeout(function() {
-
+				function showdata ($article){
+						// No such article? Bail.
+						if ($article.length == 0)
+							return;
+	
+					// Handle lock.
+	
+						// Already locked? Speed through "show" steps w/o delays.
+							if (locked || (typeof initial != 'undefined' && initial === true)) {
+	
+								// Mark as switching.
+									$body.addClass('is-switching');
+	
+								// Mark as visible.
+									$body.addClass('is-article-visible');
+	
+								// Deactivate all articles (just in case one's already active).
+									$main_articles.removeClass('active');
+	
 								// Hide header, footer.
 									$header.hide();
 									$footer.hide();
-
+	
 								// Show main, article.
 									$main.show();
 									$article.show();
-
+	
 								// Activate article.
+									$article.addClass('active');
+	
+								// Unlock.
+									locked = false;
+	
+								// Unmark as switching.
 									setTimeout(function() {
-
-										$article.addClass('active');
-
-										// Window stuff.
-											$window
-												.scrollTop(0)
-												.triggerHandler('resize.flexbox-fix');
-
-										// Unlock.
-											setTimeout(function() {
-												locked = false;
-											}, delay);
-
-									}, 25);
-
-							}, delay);
-
-					}
+										$body.removeClass('is-switching');
+									}, (initial ? 1000 : 0));
+	
+								return;
+	
+							}
+	
+						// Lock.
+							locked = true;
+	
+					// Article already visible? Just swap articles.
+						if ($body.hasClass('is-article-visible')) {
+	
+							// Deactivate current article.
+								var $currentArticle = $main_articles.filter('.active');
+	
+								$currentArticle.removeClass('active');
+	
+							// Show article.
+								setTimeout(function() {
+	
+									// Hide current article.
+										$currentArticle.hide();
+	
+									// Show article.
+										$article.show();
+	
+									// Activate article.
+										setTimeout(function() {
+	
+											$article.addClass('active');
+	
+											// Window stuff.
+												$window
+													.scrollTop(0)
+													.triggerHandler('resize.flexbox-fix');
+	
+											// Unlock.
+												setTimeout(function() {
+													locked = false;
+												}, delay);
+	
+										}, 25);
+	
+								}, delay);
+	
+						}
+	
+					// Otherwise, handle as normal.
+						else {
+	
+							// Mark as visible.
+								$body
+									.addClass('is-article-visible');
+	
+							// Show article.
+								setTimeout(function() {
+	
+									// Hide header, footer.
+										$header.hide();
+										$footer.hide();
+	
+									// Show main, article.
+										$main.show();
+										$article.show();
+	
+									// Activate article.
+										setTimeout(function() {
+	
+											$article.addClass('active');
+	
+											// Window stuff.
+												$window
+													.scrollTop(0)
+													.triggerHandler('resize.flexbox-fix');
+	
+											// Unlock.
+												setTimeout(function() {
+													locked = false;
+												}, delay);
+	
+										}, 25);
+	
+								}, delay);
+	
+						}
+				}
 
 			};
 
@@ -348,14 +387,17 @@
 
 					}
 
-				// Otherwise, check for a matching article.
-					else if ($main_articles.filter(location.hash).length > 0) {
+					// Otherwise, check for a matching article.
+					//  if ($main_articles.filter(location.hash).length > 0)
+						else {
 
 						// Prevent default.
 							event.preventDefault();
 							event.stopPropagation();
 
 						// Show article.
+						
+							
 							$main._show(location.hash.substr(1));
 
 					}

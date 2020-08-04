@@ -12,7 +12,17 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('intro');
+});
+
+Route::get('/getTemplate/{string}', function($string){
+
+    if (View::exists("portfolio.".$string)) {
+        return view("portfolio.".$string);
+    }else{
+        return response( view("portfolio.notFound")->with('string',$string), 404);
+    }
+    
 });
 
 Auth::routes();
