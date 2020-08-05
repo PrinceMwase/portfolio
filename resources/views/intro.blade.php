@@ -21,8 +21,10 @@
                 <li><a href="#bio">Bio</a></li>
                 <li><a href="#work">Work</a></li>
                 <li><a href="#about">Gallery</a></li>
-                <li><a href="#contact">Contact</a></li>
-                {{-- <li><a href="#elements">Elements</a></li> --}}
+                @auth
+                      <li><a href="#contact">Contact</a></li>
+                @endauth
+                <li><a href="#elements">Elements</a></li>
             </ul>
         </nav>
     </header>

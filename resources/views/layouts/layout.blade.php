@@ -4,6 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
     <link rel="stylesheet" href="{{asset('main/css/main.css')}}">
+    <style>
+        .custom-file-label::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    display: block;
+    height: calc(1.5em + .75rem);
+    padding: .375rem .75rem;
+    line-height: 1.5;
+    color: #495057;
+    content: "Browse";
+    background-color: #e9ecef;
+    border-left: inherit;
+    border-radius: 0 .25rem .25rem 0;
+}
+    </style>
     <noscript><link rel="stylesheet" href="{{asset('main/css/noscript.css')}}" /></noscript>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title> {{config('app.name', 'Larav')}} </title>
