@@ -3,8 +3,9 @@
 
                         <!-- Contact -->
                         <article id="contact">
-                            <h2 class="major">Contact</h2>
-                            <form method="post" action="">
+                            <h2 class="major">Send a goon</h2>
+                            <form method="post" action="{{route('goon.store')}}" enctype="multipart/form-data" >
+                                @csrf
                                 <div class="fields">
                                     <div class="field half">
                                         <label for="category">Category</label>
@@ -34,8 +35,8 @@
                                         padding: .375rem .75rem;
                                         font-weight: 400;
                                         line-height: 1.5;
-                                        color: #495057;
-                                        background-color: #fff;
+                                        color: #ebebec;
+                                        background-color: #24262a;
                                         border: 1px solid #ced4da;
                                         border-radius: .25rem;
                                         margin-top: 1rem;

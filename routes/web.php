@@ -25,6 +25,12 @@ Route::get('/getTemplate/{string}', function($string){
     
 });
 
+// Goon controller route
+
+Route::resource('goon', 'GoonController');
+
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
