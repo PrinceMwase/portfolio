@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+
+use Illuminate\Support\Facades\Storage;
 class GoonController extends Controller
 {
     /**
@@ -41,14 +43,24 @@ class GoonController extends Controller
             'message' => ['required', 'string']
         ]);
 
+
             $category = Category::find(  $request['category'] );
 
+            // copy file to the right directory
+            Storage::putFileAs('public/'.$request['category'], 
+                $request->file('image'), 
+                $request->file('image')->getClientOriginalName()
+            );
+
+            // create a goo record
             $goon = $category->goon()->create([
                 'words' => $request['message'],
-                'image' => $request->file('image')->getClientOriginalName()
+                'image' => 'storage/'.$request['category'].'/'. $request->file('image')->getClientOriginalName()
             ]);
 
-        return 'done';
+            
+
+        return 'uploaded';
 
     }
 
