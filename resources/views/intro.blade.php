@@ -25,6 +25,7 @@
                       <li><a href="#contact">Contact</a></li>
                 @endauth
                 <li><a href="#elements">Elements</a></li>
+                <li><a href="#goonies">Goonies</a></li>
             </ul>
         </nav>
     </header>

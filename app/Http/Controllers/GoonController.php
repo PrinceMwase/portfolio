@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use App\Goon;
 
 use Illuminate\Support\Facades\Storage;
 class GoonController extends Controller
@@ -73,6 +74,13 @@ class GoonController extends Controller
     public function show($id)
     {
         //
+        if($id == 0){
+            $goons = Goon::paginate(10);
+        }else{
+            $goons = Category::find($id)->goon()->paginate(10);
+        }
+
+        return response()->json($goons);
     }
 
     /**
