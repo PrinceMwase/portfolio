@@ -85,7 +85,7 @@
 					let loadTemplate = $.get(`/getTemplate/${id}`);
 				
 					loadTemplate.done( function (data) {
-						loadArticle(data, id);
+						 loadArticle(data, id);
 						}
 					);
 				}
@@ -94,11 +94,13 @@
 
 
 
-				function loadArticle(data, id) {
-					
+				async function loadArticle(data, id) {
+				
+
 					Template.push(id)
-					
-					$main.append(data);
+				
+					$main.append(await data);
+
 					$main_articles = $main.children('article');
 
 					var $article = $main_articles.filter('#' + id);
@@ -401,6 +403,7 @@
 
 						// Hide.
 							$main._hide();
+							$('title').text( 'Gallery' )
 
 					}
 
@@ -416,7 +419,7 @@
 						
 							
 							$main._show(location.hash.substr(1));
-
+							$('title').text( location.hash.substr(1) );
 					}
 
 			});

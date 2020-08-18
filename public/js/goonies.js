@@ -1,33 +1,60 @@
 $(document).ready( function(){
-    console.log('prince');
+    let categoryList = $('li.category');
+    let gooniesection = $('section.gooniesection');
 
     // handle hover and click events
-    $('li.category').hover(function(){
+    categoryList.hover(function(){
 
         // change color on hover
-    $(this).css({'backgroundColor': '#595b5e' });
+    $(this).css({'backgroundColor': '#595b5e', 'cursor' : 'pointer' });
     },function(){
 
         // remove color whe out of hover
-    $(this).css({'backgroundColor': '#25282d' });
+    $(this).css({'backgroundColor': 'transparent' });
     } ).on('click', function(){
         
         // on click evente
         // get category's id
         let id = $(this).css({'backgroundColor': '#595b5e' }).attr('id');
+        let listState ;
 
-        // loop through each category
-      $('li.category').each( function(x, y){
+        // remove acive class if it has it
+        if( $(this).hasClass('active') ){
+
+            
+            $('li.category:not(.active)').slideToggle();
+
+            $(this).removeClass('active');
+
+            listState =0;
+            gooniesection.html(" ");
+
+            
+        }else{
+               // add an active to it 
+                $(this).addClass('active');
+                listState =1;
+                
+        }
+
+    // loop through each category
+    if(listState === 1)
+    categoryList.each( function(x, y){
 
         // remove every category  that doesnt match the id
-            if( $(y).attr('id') !== id ){
-                $(y).slideUp();   
+            if( $(y).attr('id') !== id ){           
+                
+                $(y).slideToggle();   
             }else{
                 // fetch data
 
                 let getGoonies = $.get(`goon/${id}`);
 
+
                 getGoonies.done( function(data){
+                   
+                    
+                    gooniesection.html(" ")
                         for (const goon of data.data) {
                         
 
@@ -42,18 +69,15 @@ $(document).ready( function(){
                                 <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
                                 <li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
                             </ul>`
-                            $('section.gooniesection').append(post);
+                            gooniesection.append(post);
                         }
 
                         if(data.data.length === 0){
                            
-                            $('section.gooniesection').append( '<blockquote>No Content Available</blockquote>' )
+                            gooniesection.html( '<blockquote>No Content Available</blockquote>' )
                             
                         }
                         
-                    
-                    
-                    
                 });
 
                 // done fetching
@@ -61,7 +85,6 @@ $(document).ready( function(){
       })
         
 
-        
     });
 
 
