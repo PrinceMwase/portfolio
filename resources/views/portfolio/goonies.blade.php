@@ -2,7 +2,7 @@
         <article id="goonies">
             <h2 class="major">Goonies</h2>
             <section>
-                <h4>Explore the categories</h4>
+                <h4>Explore the Cave</h4>
                 <ul class="alt ">
                     <li class="category" id="0">All</li>
                     @foreach (App\Category::all() as $category)
@@ -16,6 +16,12 @@
            
             <section class="gooniesection">
        
+            </section>
+            <section>
+                <ul class="actions">
+                 
+                   
+                </ul>
             </section>
 
         <script async="true" src="{{asset('js/goonies.js')}}">
