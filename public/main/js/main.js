@@ -73,9 +73,16 @@
 		// Methods.
 			$main._show = function(id, initial) {
 
-				console.log('searching for : '+ id);
-	
-				if( Template.includes(id) ){
+				
+				// it will search if an article is already
+				if( Template.includes(id) || Template.includes( 'goon' + id.split('/')[1] )  ){
+					
+					
+					
+					// this condition checks for addition parameters and clean them for approved syntax in the filter function
+					if( id.includes('/') ){
+						id = 'goon' + id.split('/')[1]
+					}
 					
 					$article = $main_articles.filter('#' + id);
 
@@ -85,6 +92,10 @@
 					let loadTemplate = $.get(`/getTemplate/${id}`);
 				
 					loadTemplate.done( function (data) {
+					
+						if( id.includes('/') ){
+							id = 'goon' + id.split('/')[1]
+						}
 						 loadArticle(data, id);
 						}
 					);
@@ -98,11 +109,16 @@
 				
 
 					Template.push(id)
+
+				
+					
 				
 					$main.append(await data);
 
 					$main_articles = $main.children('article');
 
+					
+					
 					var $article = $main_articles.filter('#' + id);
 
 					showdata($article)
@@ -117,6 +133,12 @@
 								.appendTo($this)
 								.on('click', function() {
 									location.hash = '';
+								});
+		
+							$('<div class="return icon fa-arrow-left solid"></div>')
+								.appendTo($this)
+								.on('click', function() {
+									window.history.back();
 								});
 		
 						// Prevent clicks from inside article from bubbling.
@@ -419,7 +441,13 @@
 						
 							
 							$main._show(location.hash.substr(1));
-							$('title').text( location.hash.substr(1) );
+
+							if(!location.hash.substr(1).includes('/') ) {
+								$('title').text( location.hash.substr(1) );
+							}else{
+								$('title').text( 'Goon' );
+							}
+							
 					}
 
 			});

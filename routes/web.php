@@ -15,10 +15,15 @@ Route::get('/', function () {
     return view('intro');
 });
 
-Route::get('/getTemplate/{string}', function($string){
+Route::get('/getTemplate/{string}/{id?}', function($string, $id = null){
+
+    if($string == 'goon'){
+        
+        return redirect()->route('goon.show', $id);
+    }
 
     if (View::exists("portfolio.".$string)) {
-        return view("portfolio.".$string);
+        return view("portfolio.".$string)->with('id', $id);
     }else{
         return  view("portfolio.notFound")->with('string',$string) ;
     }
@@ -28,6 +33,7 @@ Route::get('/getTemplate/{string}', function($string){
 // Goon controller route
 
 Route::resource('goon', 'GoonController');
+Route::resource('category', 'CategoryController');
 
 
 

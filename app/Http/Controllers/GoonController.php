@@ -74,13 +74,11 @@ class GoonController extends Controller
     public function show($id)
     {
         //
-        if($id == 0){
-            $goons = Goon::paginate(10);
-        }else{
-            $goons = Category::find($id)->goon()->paginate(10);
-        }
+        
+        $goon = Goon::find($id);
 
-        return response()->json($goons);
+    
+        return view('portfolio.goon')->with('goon', $goon) ;
     }
 
     /**
