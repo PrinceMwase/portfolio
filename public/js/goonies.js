@@ -23,11 +23,17 @@ $(document).ready( function(){
             listState = 0;
             gooniesection.html(" ");
             actionList.html(" ")
+
+            $('h2.gallery').text('Categories');
+            $('h4.gallery').text('Explore the cave');
             
         }else{
                // add an active to it 
                 $(this).addClass('active');
                 listState =1;
+
+                $('h2.gallery').text('Category');
+                $('h4.gallery').text(' ');
                 
         }
 

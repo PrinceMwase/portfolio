@@ -1,8 +1,8 @@
 		<!-- Intro -->
-        <article id="goonies">
-            <h2 class="major">Goonies</h2>
+        <article id="gallery">
+            <h2 class="major gallery">Categories</h2>
             <section>
-                <h4>Explore the Cave</h4>
+                <h4 class="gallery">Explore the Cave</h4>
                 <ul class="alt ">
                     <li class="category" id="0">All</li>
                     @foreach (App\Category::all() as $category)

@@ -5,7 +5,13 @@
     {{-- header --}}
     <header id="header">
         <div class="logo">
-            <span class="icon fa-user"></span>
+            <img src="{{asset('main/images/profile.png')}}" alt="" style="
+            width: 100%;
+            height: 100%;
+            border: solid 1px transparent;
+            border-radius: 100%;
+        ">
+            {{-- <span class="icon fa-user"></span> --}}
         </div>
         <div class="content">
             <div class="inner">
@@ -20,12 +26,14 @@
             <ul>
                 <li><a href="#bio">Bio</a></li>
                 <li><a href="#work">Work</a></li>
-                <li><a href="#about">Gallery</a></li>
+                <li><a href="#about">about</a></li>
                 @auth
-                      <li><a href="#contact">Contact</a></li>
+                      <li><a href="#post">Post</a></li>
                 @endauth
-                <li><a href="#elements">Elements</a></li>
-                <li><a href="#goonies">Goonies</a></li>
+                @guest
+                <li><a href="#book">booking</a></li>
+                @endguest
+                <li><a href="#gallery">Gallery</a></li>
             </ul>
         </nav>
     </header>
