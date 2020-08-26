@@ -16,8 +16,8 @@
         <div class="content">
             <div class="inner">
                 <h1>UI Hexed</h1>
-                <h3>Helix</h3>
-                <p>is a software and web developer with more than 6 years of experience <br />
+                <h3>Prince Mwase</h3>
+                <p>is a software and web developer with more than 6 years of experience <br>
                  An active member and co-founder of <a href="mailto:helix@tikwele.com">UI HEXED</a> </p>
                  
             </div>
@@ -26,14 +26,14 @@
             <ul>
                 <li><a href="#bio">Bio</a></li>
                 <li><a href="#work">Work</a></li>
-                <li><a href="#about">about</a></li>
-                @auth
-                      <li><a href="#post">Post</a></li>
-                @endauth
-                @guest
-                <li><a href="#book">booking</a></li>
-                @endguest
                 <li><a href="#gallery">Gallery</a></li>
+                @auth
+                      <li><a href="#post">Cave</a></li>
+                @endauth
+                
+                <li><a href="#contact">contact</a></li>
+                <li><a href="#about">about</a></li>
+                
             </ul>
         </nav>
     </header>

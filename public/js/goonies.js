@@ -75,17 +75,11 @@ function fetchData(id, gooniesection, actionList, link = $.get(`category/${id}`)
         for (const goon of data.data) {
             let post = `
             <div class="gooniepost" id="postno${goon.id}">
-              <span class="image main"><img src="/${goon.image}" alt="" onscroll="console.log('hey')" /> </span> 
+              <span class="image main"><img src="/${goon.image}" alt="" " /> </span> 
                             <blockquote>
                             ${goon.words} #${$('#' + goon.category_id).text()}
                             </blockquote>
-                            <ul class="icons">
-                            
-                                <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-                                <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-                                <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-                                <li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
-                            </ul>
+                           
             </div>
           `;
             gooniesection.append(post);

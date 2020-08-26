@@ -1,7 +1,7 @@
 		<!-- Intro -->
         <article id="bio">
             <h2 class="major">Bio</h2>
-            <span class="image main"><img src="{{asset('main/images/pic01.jpg')}}" alt="" /></span>
+            {{-- <span class="image main"><img src="{{asset('main/images/prince.png')}}" alt="" /></span> --}}
             <p>Helix real name <b>Prince Mwase</b> is 22 year old Malawian developer and Bachelor of ICT Student at   <a href="http://mzuni.ac.mw">Mzuzu Univeristy</a>.</p>
           
             <p>

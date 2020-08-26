@@ -30,11 +30,16 @@ Route::get('/getTemplate/{string}/{id?}', function($string, $id = null){
     
 });
 
+
+
 // Goon controller route
 
 Route::resource('goon', 'GoonController');
 Route::resource('category', 'CategoryController');
 
+
+// contact controller route
+Route::post('feedback', 'FeedbackController@post');
 
 
 Auth::routes();

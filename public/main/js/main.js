@@ -135,7 +135,7 @@
 									location.hash = '';
 								});
 		
-							$('<div class="return icon fa-arrow-left solid"></div>')
+							$('<div class="return"> <span class="icon fa-arrow-left solid" style="padding-left: 10px;top: 7px;"> <span> </div>')
 								.appendTo($this)
 								.on('click', function() {
 									window.history.back();
