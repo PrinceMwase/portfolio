@@ -3,7 +3,7 @@
 
     <div>
         <span class="image main">
-            <img src="/{{$goon->image}}" alt=""  /> 
+            <img src="http://{{$goon->image}}" alt=""  /> 
         </span> 
                       <blockquote>
                         {{$goon->words}} #{{$goon->category->name}}

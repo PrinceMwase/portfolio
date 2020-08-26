@@ -75,7 +75,7 @@ function fetchData(id, gooniesection, actionList, link = $.get(`category/${id}`)
         for (const goon of data.data) {
             let post = `
             <div class="gooniepost" id="postno${goon.id}">
-              <span class="image main"><img src="/${goon.image}" alt="" " /> </span> 
+              <span class="image main"><img src="http://${goon.image}" alt="" " /> </span> 
                             <blockquote>
                             ${goon.words} #${$('#' + goon.category_id).text()}
                             </blockquote>

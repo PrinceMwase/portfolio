@@ -48,15 +48,13 @@ class GoonController extends Controller
             $category = Category::find(  $request['category'] );
 
             // copy file to the right directory
-            Storage::putFileAs('public/'.$request['category'], 
-                $request->file('image'), 
-                $request->file('image')->getClientOriginalName()
+           $location = Storage::disk('ftp')->putFile('kitso.uihexed.tikwele.com/'.$request['category'],      $request->file('image')
             );
 
             // create a goo record
             $goon = $category->goon()->create([
                 'words' => $request['message'],
-                'image' => 'storage/'.$request['category'].'/'. $request->file('image')->getClientOriginalName()
+                'image' => $location,
             ]);
 
             
