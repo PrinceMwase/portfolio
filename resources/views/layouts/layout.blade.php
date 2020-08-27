@@ -38,6 +38,25 @@ li.category.active{
     padding-left: 20px;
     transition-duration: 500ms;
 }
+@keyframes spinner-border {
+    to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+.spinner-border {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    vertical-align: text-bottom;
+    border: .25em solid currentColor;
+    border-right-color: transparent;
+    border-radius: 100%;
+    -webkit-animation: spinner-border .75s linear infinite;
+    animation: spinner-border .75s linear infinite;
+    position: fixed;
+    top: 50%;
+}
     </style>
     <noscript><link rel="stylesheet" href="{{asset('main/css/noscript.css')}}" /></noscript>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -45,6 +64,10 @@ li.category.active{
 </head>
 <body class="is-preload">
     <div id="wrapper">
+
+        <div class="spinner-border text-dark" role="status" style="display: none"> 
+            <span class="sr-only">Loading...</span>
+          </div>
 
         @yield('header')
 
@@ -81,6 +104,7 @@ li.category.active{
         <script src="{{asset('main/js/breakpoints.min.js')}}"></script>
         <script src="{{asset('main/js/util.js')}}"></script>
         <script src="{{asset('main/js/main.js')}}"></script>
+
 
 </body>
 </html>

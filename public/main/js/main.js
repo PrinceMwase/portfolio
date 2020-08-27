@@ -6,6 +6,8 @@
 
 (function($) {
 
+	
+
 	var	$window = $(window),
 		$body = $('body'),
 		$wrapper = $('#wrapper'),
@@ -13,8 +15,14 @@
 		$footer = $('#footer'),
 		$main = $('#main'),
 		Template = [];
-		$main_articles = $main.children('article');
+		$main_articles = $main.children('article'),
+		$spinner = $('.spinner-border');
 
+	$(document).ajaxStart(function(){
+		$spinner.show();
+	} ).ajaxStop(function(){
+		$spinner.hide();
+	} )
 	// Breakpoints.
 		breakpoints({
 			xlarge:   [ '1281px',  '1680px' ],
