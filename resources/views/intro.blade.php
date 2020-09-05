@@ -26,8 +26,9 @@
             <ul>
                 <li><a href="#bio">Bio</a></li>
                 <li><a href="#work">Work</a></li>
-                <li><a href="#gallery">Gallery</a></li>
+              
                 @auth
+                    <li><a href="#gallery">Gallery</a></li>
                       <li><a href="#post">Cave</a></li>
                 @endauth
                 
